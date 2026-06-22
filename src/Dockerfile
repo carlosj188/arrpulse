@@ -10,6 +10,10 @@ RUN npm run build
 FROM node:22-bookworm-slim
 WORKDIR /app
 
+# Vincula a imagem ao repositório no ghcr (aparece em Packages do repo)
+LABEL org.opencontainers.image.source="https://github.com/carlosj188/arrpulse"
+LABEL org.opencontainers.image.description="ArrPulse — monitor de saúde do stack arr (Radarr/Sonarr/Prowlarr/Jellyfin/qBittorrent)"
+
 # build tools como fallback caso better-sqlite3 não tenha binário pré-compilado
 # tzdata: necessário para o fuso (TZ) do "horário silencioso" funcionar
 RUN apt-get update \

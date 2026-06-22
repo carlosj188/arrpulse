@@ -1,0 +1,21 @@
+# Dependências e build
+node_modules/
+dist/
+
+# Dados de runtime (banco SQLite, volumes)
+data/
+*.db
+*.sqlite
+
+# Segredos e ambiente
+.env
+*.env
+!.env.example
+
+# Backups locais (tarballs da src)
+backups/
+
+# Arquivos temporários / editor
+*.log
+*.bak
+.DS_Store

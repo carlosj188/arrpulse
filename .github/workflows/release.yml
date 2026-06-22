@@ -8,7 +8,7 @@ on:
       - "v*.*.*"
 
 env:
-  IMAGE: ghcr.io/${{ github.repository_owner }}/arr-watch
+  IMAGE: ghcr.io/${{ github.repository_owner }}/arrpulse
 
 jobs:
   build:

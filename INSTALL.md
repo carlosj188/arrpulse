@@ -1,6 +1,6 @@
 # ArrPulse — Guia de instalação
 
-Instalação via Docker usando a imagem publicada em `ghcr.io/carlosj188/arr-watch`. Não precisa clonar repositório nem buildar nada.
+Instalação via Docker usando a imagem publicada em `ghcr.io/carlosj188/arrpulse`. Não precisa clonar repositório nem buildar nada.
 
 ---
 
@@ -86,7 +86,7 @@ Tudo (serviços, credenciais cifradas, settings, eventos) fica em **`./data/arr-
 
 ```bash
 # cópia consistente do SQLite
-docker compose exec arr-watch sh -c 'apk add --no-cache sqlite >/dev/null 2>&1; true'  # se necessário
+docker compose exec arrpulse sh -c 'apk add --no-cache sqlite >/dev/null 2>&1; true'  # se necessário
 cp -a ./data ./data-backup-$(date +%F)
 ```
 

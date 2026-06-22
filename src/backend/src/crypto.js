@@ -2,7 +2,7 @@ import crypto from 'node:crypto';
 
 const SECRET = process.env.APP_SECRET || '';
 if (!SECRET) {
-  console.warn('[arr-watch] AVISO: APP_SECRET não definido. Defina no .env para proteger as credenciais no banco.');
+  console.warn('[arrpulse] AVISO: APP_SECRET não definido. Defina no .env para proteger as credenciais no banco.');
 }
 // 32 bytes derivados do APP_SECRET
 const key = crypto.createHash('sha256').update(SECRET).digest();

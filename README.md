@@ -2,8 +2,7 @@
 
 Monitor de saúde do stack *arr* — **Radarr, Sonarr, Prowlarr, Jellyfin e qBittorrent** — com dashboard, feed de eventos em tempo real e notificações push no celular.
 
-> Imagem: `ghcr.io/carlosj188/arr-watch` · porta `8080` · container único · dados em SQLite.
-> O produto se chama **ArrPulse**; a pasta/imagem mantêm o nome histórico `arr-watch`.
+> Imagem: `ghcr.io/carlosj188/arrpulse` · porta `8080` · container único · dados em SQLite.
 
 ---
 
@@ -112,8 +111,8 @@ tudo num **container único** pelo próprio Fastify.
 
 ```bash
 cd src
-docker build -t ghcr.io/carlosj188/arr-watch:<versão> .
-docker push  ghcr.io/carlosj188/arr-watch:<versão>
+docker build -t ghcr.io/carlosj188/arrpulse:<versão> .
+docker push  ghcr.io/carlosj188/arrpulse:<versão>
 ```
 
 Depois é só apontar a tag no `docker-compose.yml` e `docker compose pull && up -d`.

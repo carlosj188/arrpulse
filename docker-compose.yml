@@ -1,7 +1,7 @@
 services:
-  arr-watch:
-    image: ghcr.io/carlosj188/arr-watch:1.0.9   # ou :latest
-    container_name: arr-watch
+  arrpulse:
+    image: ghcr.io/carlosj188/arrpulse:1.0.9   # ou :latest
+    container_name: arrpulse
     restart: unless-stopped
     env_file: .env
     ports:

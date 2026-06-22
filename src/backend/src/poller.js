@@ -141,7 +141,7 @@ export async function pollAll() {
     try {
       await checkService(svc);
     } catch (e) {
-      console.error(`[arr-watch] erro ao verificar serviço ${svc.id} (${svc.name}):`, e.message);
+      console.error(`[arrpulse] erro ao verificar serviço ${svc.id} (${svc.name}):`, e.message);
     }
   }
 }

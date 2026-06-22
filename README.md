@@ -125,3 +125,7 @@ Depois é só apontar a tag no `docker-compose.yml` e `docker compose pull && up
 - **1.0.9** — redesign do painel de configurações em 4 abas (Canais · Eventos · Agenda · Silêncio) com interruptor-mestre "Push global"; modais unificados (Esc fecha, backdrop petróleo); fontes Archivo + JetBrains Mono.
 - **1.0.7** — aviso diário de atualização disponível (sem degradar o serviço), alerta de idioma sempre notifica, motivo do degradado real no card e resumo de downloads concluídos do qBittorrent.
 - **1.0.0** — primeira imagem publicada no ghcr.io. Inclui anti-flapping (debounce de 2 falhas) e timeout configurável por serviço.
+
+---
+
+> Projeto desenvolvido com auxílio de IA (assistência de código e documentação).

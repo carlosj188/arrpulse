@@ -1,6 +1,6 @@
 services:
   arrpulse:
-    image: ghcr.io/carlosj188/arrpulse:1.0.9   # ou :latest
+    image: ghcr.io/carlosj188/arrpulse:latest   # ou fixe uma versão: :1.0.9
     container_name: arrpulse
     restart: unless-stopped
     env_file: .env

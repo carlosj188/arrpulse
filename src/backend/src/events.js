@@ -65,13 +65,17 @@ export function clearServiceEventsByType(serviceId, type) {
   clearByTypeStmt.run(serviceId, type);
 }
 
-export function listEvents({ limit = 50, severity = null, search = null, days = null } = {}) {
+export function listEvents({ limit = 50, severity = null, type = null, search = null, days = null } = {}) {
   const where = [];
   const params = [];
 
   if (severity) {
     where.push('severity = ?');
     params.push(severity);
+  }
+  if (type) {
+    where.push('type = ?');
+    params.push(type);
   }
   if (search) {
     where.push('(title LIKE ? OR message LIKE ?)');

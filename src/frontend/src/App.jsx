@@ -78,7 +78,7 @@ export default function App() {
   }, []);
 
   async function applyFilter(filter) {
-    if (!filter.severity && !filter.search) {
+    if (!filter.severity && !filter.type && !filter.search) {
       setFilteredEvents(null);
       setShowingHistory(false);
       return;

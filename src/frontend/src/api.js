@@ -65,9 +65,10 @@ export const deleteService = (id) => req(`/api/services/${id}`, { method: 'DELET
 export const refreshService = (id) => post(`/api/services/${id}/refresh`);
 
 // --- Eventos / stats / settings ---
-export function listEvents({ limit = 50, severity, search, days } = {}) {
+export function listEvents({ limit = 50, severity, type, search, days } = {}) {
   const p = new URLSearchParams({ limit });
   if (severity) p.set('severity', severity);
+  if (type) p.set('type', type);
   if (search) p.set('search', search);
   if (days) p.set('days', days);
   return req(`/api/events?${p}`);

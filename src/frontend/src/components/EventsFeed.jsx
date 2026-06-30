@@ -8,30 +8,33 @@ const SEV = {
   info: { dot: 'bg-up', text: 'text-up', label: 'Info' },
 };
 
-const SEV_FILTERS = [
-  { value: null, label: 'Todos' },
-  { value: 'critical', label: 'Crítico' },
-  { value: 'warning', label: 'Alerta' },
-  { value: 'info', label: 'Info' },
+// Pills mutuamente exclusivos: filtram por severidade ou por tipo (qbit_done).
+const FILTERS = [
+  { key: 'all', label: 'Todos' },
+  { key: 'critical', label: 'Crítico', severity: 'critical' },
+  { key: 'qbit_done', label: 'Concluídos', type: 'qbit_done' },
+  { key: 'warning', label: 'Alerta', severity: 'warning' },
+  { key: 'info', label: 'Info', severity: 'info' },
 ];
 
 export default function EventsFeed({ events, onFilter, onLoadHistory, hasFilter, showingHistory }) {
   const [search, setSearch] = useState('');
-  const [severity, setSeverity] = useState(null);
+  const [active, setActive] = useState('all');
   const debounceRef = useRef(null);
 
   useEffect(() => {
+    const f = FILTERS.find((x) => x.key === active) || FILTERS[0];
     clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
-      onFilter?.({ severity, search: search.trim() });
+      onFilter?.({ severity: f.severity ?? null, type: f.type ?? null, search: search.trim() });
     }, 400);
     return () => clearTimeout(debounceRef.current);
-  }, [search, severity]);
+  }, [search, active]);
 
   function clearFilters() {
     setSearch('');
-    setSeverity(null);
-    onFilter?.({ severity: null, search: '' });
+    setActive('all');
+    onFilter?.({ severity: null, type: null, search: '' });
   }
 
   const pillBase = 'rounded-full px-3 py-1 text-xs font-medium transition-colors';
@@ -53,11 +56,11 @@ export default function EventsFeed({ events, onFilter, onLoadHistory, hasFilter,
         </div>
 
         <div className="flex items-center gap-1">
-          {SEV_FILTERS.map((f) => (
+          {FILTERS.map((f) => (
             <button
-              key={String(f.value)}
-              onClick={() => setSeverity(f.value)}
-              className={`${pillBase} ${severity === f.value ? pillActive : pillInactive}`}
+              key={f.key}
+              onClick={() => setActive(f.key)}
+              className={`${pillBase} ${active === f.key ? pillActive : pillInactive}`}
             >
               {f.label}
             </button>

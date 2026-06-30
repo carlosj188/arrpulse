@@ -211,8 +211,8 @@ app.post('/api/hooks/:token', async (req, reply) => {
 
 // --- Eventos ---
 app.get('/api/events', async (req) => {
-  const { limit, severity, search, days } = req.query || {};
-  return listEvents({ limit, severity, search, days });
+  const { limit, severity, type, search, days } = req.query || {};
+  return listEvents({ limit, severity, type, search, days });
 });
 
 app.delete('/api/events', async () => ({ ok: true, cleared: clearAllEvents() }));

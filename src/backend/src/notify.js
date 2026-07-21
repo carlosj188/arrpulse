@@ -146,10 +146,15 @@ export async function flushQuietQueue() {
     severity: maxSev,
   };
 
-  const results = await sendTo(enabledChannels(s), s, payload);
-  const ok = results.length > 0 && results.every((r) => r.ok);
-  if (ok) clearDeferred();
-  return { ok, flushed: ok ? n : 0, results };
+  const channels = enabledChannels(s);
+  const results = await sendTo(channels, s, payload);
+  // Basta UM canal entregar para descarregar a fila. Reter os eventos porque um canal
+  // secundário falhou (ex.: ntfy offline) faz o flush repetir a cada tick e spammar os
+  // canais que já receberam. Só re-tenta quando NADA foi entregue; sem canais habilitados
+  // também limpa, p/ não deixar eventos órfãos presos para sempre.
+  const deliveredAny = results.some((r) => r.ok);
+  if (deliveredAny || channels.length === 0) clearDeferred();
+  return { ok: deliveredAny, flushed: deliveredAny ? n : 0, results };
 }
 
 // Verifica a cada 30s; assim que sair do silêncio, descarrega os eventos represados.
